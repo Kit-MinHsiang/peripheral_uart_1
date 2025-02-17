@@ -578,7 +578,6 @@ static void configure_gpio(void)
 
 int main(void)
 {
-	int blink_status = 0;
 	int err = 0;
 
 	configure_gpio();
@@ -629,6 +628,7 @@ int main(void)
 	}
 
 	for (;;) {
+		static int blink_status = 0;
 		dk_set_led(RUN_STATUS_LED, (++blink_status) % 2);
 		k_sleep(K_MSEC(RUN_LED_BLINK_INTERVAL));
 	}
